@@ -48,7 +48,7 @@ namespace VizeWeb
             app.UseRouting();
 
             app.UseAuthorization();
-           
+            
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
