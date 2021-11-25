@@ -17,6 +17,10 @@ namespace VizeWeb
     {
         public static void Main(string[] args)
         {
+            using (DatabaseContext client = new())
+            {
+                client.Database.Migrate();
+            }
             DatabaseContext databaseContext = new DatabaseContext();
             databaseContext.Uyeler.AddRange(
                 new List<Uye> {
@@ -66,8 +70,6 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(1999,5,6),
                             UyeMail="Esma@gmail.com",
                             UyeTelNo="053444554",
-                           
-                            
                         },
                 });
             databaseContext.SaveChanges();
