@@ -33,7 +33,8 @@ namespace VizeWeb.Controllers
 
         public IActionResult GetAllUye(Uye uye)
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            List<Uye> Uyeler = databaseContext.Uyeler.ToList();
+            return View(Uyeler);
         }
 
 

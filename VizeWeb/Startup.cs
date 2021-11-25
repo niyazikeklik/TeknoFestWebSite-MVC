@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using VizeWeb.DatabaseContext2;
 
 namespace VizeWeb
 {
@@ -46,7 +48,10 @@ namespace VizeWeb
             app.UseRouting();
 
             app.UseAuthorization();
-
+            using (DatabaseContext client = new())
+            {
+                client.Database.Migrate();
+            }
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",
