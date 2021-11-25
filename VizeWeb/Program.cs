@@ -28,7 +28,7 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(1999,5,6),
                             UyeMail="niyazikeklik@gmail.com",
                             UyeTelNo="0534444",
-                            UyeYas=21,
+                           
                         },
                     new Uye()
                         {
@@ -38,7 +38,6 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(2000,5,6),
                             UyeMail="abdullah@gmail.com",
                             UyeTelNo="05344444",
-                            UyeYas=21,
                         },
                     new Uye()
                         {
@@ -48,7 +47,6 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(2001,5,6),
                             UyeMail="irem@gmail.com",
                             UyeTelNo="05344444444",
-                            UyeYas=21,
                         },
                     new Uye()
                         {
@@ -58,7 +56,7 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(1999,5,6),
                             UyeMail="Ahmet@gmail.com",
                             UyeTelNo="05344444444",
-                            UyeYas=21,
+                          
                         },
                     new Uye()
                         {
@@ -68,7 +66,7 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(1999,5,6),
                             UyeMail="Esma@gmail.com",
                             UyeTelNo="053444554",
-                            UyeYas=21,
+                           
                             
                         },
                 });
@@ -78,7 +76,6 @@ namespace VizeWeb
                 new Takim()
                 {
                     Name="BitirimÜçlü",
-                    OkulName="Düzce Üniversitesi",
                     TakimUyeleri = new List<Uye> {
                         databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("N")),
                         databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("A")),
