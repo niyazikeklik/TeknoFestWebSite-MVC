@@ -62,10 +62,17 @@ namespace VizeWeb.Controllers
             return x;
         }
 
-        public IActionResult GetAllTeam(Takim takim)
+        public IActionResult GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
             return View(Takimlar);
+        }
+
+        public string MembersWithoutTeamsByCategory(Alanlar alanlar)
+        {
+            List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan==alanlar)).ToList();
+            string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
+            return x;
         }
 
     }

@@ -48,10 +48,7 @@ namespace VizeWeb
             app.UseRouting();
 
             app.UseAuthorization();
-            using (DatabaseContext client = new())
-            {
-                client.Database.Migrate();
-            }
+            
             app.UseEndpoints(endpoints => {
                 endpoints.MapControllerRoute(
                     name: "default",

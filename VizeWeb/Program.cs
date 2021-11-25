@@ -17,6 +17,10 @@ namespace VizeWeb
     {
         public static void Main(string[] args)
         {
+            using (DatabaseContext client = new())
+            {
+                client.Database.Migrate();
+            }
             DatabaseContext databaseContext = new DatabaseContext();
             if (databaseContext.Uyeler.Count()==0)
             {
