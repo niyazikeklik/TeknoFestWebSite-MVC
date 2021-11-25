@@ -18,6 +18,8 @@ namespace VizeWeb
         public static void Main(string[] args)
         {
             DatabaseContext databaseContext = new DatabaseContext();
+            if (databaseContext.Uyeler.Count()==0)
+            {
             databaseContext.Uyeler.AddRange(
                 new List<Uye> {
                     new Uye()
@@ -71,20 +73,25 @@ namespace VizeWeb
                         },
                 });
             databaseContext.SaveChanges();
-            databaseContext.Takimlar.AddRange(
-                new List<Takim>{
-                new Takim()
-                {
-                    Name="BitirimÜçlü",
-                    TakimUyeleri = new List<Uye> {
-                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("N")),
-                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("A")),
-                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("Ý")),
-                    },
-                    TakimUyeSayisi=3,
-                },
-            }) ;
-            databaseContext.SaveChanges();
+            }
+            if (databaseContext.Takimlar.Count()==0)
+            {
+                databaseContext.Takimlar.AddRange(
+                                new List<Takim>{
+                                new Takim()
+                                {
+                                    Name="BitirimÜçlü",
+                                    TakimUyeleri = new List<Uye> {
+                                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("N")),
+                                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("A")),
+                                        databaseContext.Uyeler.FirstOrDefault(x=>x.UyeAdi.StartsWith("Ý")),
+                                    },
+                                    TakimUyeSayisi=3,
+                                },
+                            }) ;
+                            databaseContext.SaveChanges();
+            }
+            
 
             databaseContext.Takimlar.Where(x => x.TakimdId == 1).Include(x => x.TakimUyeleri);
             CreateHostBuilder(args).Build().Run();
