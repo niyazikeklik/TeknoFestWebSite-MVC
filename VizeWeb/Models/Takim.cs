@@ -11,7 +11,6 @@ namespace VizeWeb.Models
         public int TakimdId { get; set; }
         public string Name { get; set; }
         public int TakimUyeSayisi { get; set; }
-        public string  OkulName { get; set; }
         public ICollection<Uye> TakimUyeleri { get; set; }
 
     }
