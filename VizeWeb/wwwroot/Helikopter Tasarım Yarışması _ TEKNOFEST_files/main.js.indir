@@ -1,0 +1,137 @@
+var navicon = $(".nav-icon");
+var menu = $(".menu");
+
+/* Clic nav icon --> Open Menu */
+
+navicon.on("click", function(){
+    menu.toggleClass('actif');
+    $(this).toggleClass('open');
+    $('.toggle-link').not(this).removeClass('actif');
+    $('.menu ul li ul').removeClass('open');
+});
+
+/* Clic overlay --> Close Menu */
+
+menu.on("click", function(e){
+    if (e.target !== this)
+        return;
+    $(this).removeClass('actif');
+    navicon.removeClass('open');
+    ('.menu ul li ul').removeClass('open');
+
+});
+/* Toggle link creation & Slide toggle '*/
+$(".menu ul li").has('ul').addClass('subnav');
+toggle = $(".subnav");
+toggle.append("<div class='toggle-link'></div>");
+$('.toggle-link').on("click", function(){
+    $('.toggle-link').not(this).removeClass('actif');
+    $(this).toggleClass('actif');
+    $('.toggle-link').not(this).prev('ul').removeClass('open');
+    $(this).prev('ul').toggleClass('open');
+});
+$('.owl-abc').owlCarousel({
+    stagePadding: 200,
+    loop:true,
+    margin:10,
+    autoplay:true,
+    autoplayTimeout:3000,
+    autoplayHoverPause:true,
+    items:1,
+    lazyLoad: true,
+    nav:true,
+    navText: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+    ],
+    responsive:{
+        0:{
+            items:1,
+            stagePadding: 60
+        },
+        600:{
+            items:1,
+            stagePadding: 100
+        },
+        1000:{
+            items:1,
+            stagePadding: 200
+        },
+        1200:{
+            items:1,
+            stagePadding: 250
+        },
+        1400:{
+            items:1,
+            stagePadding: 300
+        },
+        1600:{
+            items:1,
+            stagePadding: 350
+        },
+        1800:{
+            items:1,
+            stagePadding: 400
+        }
+    }
+})
+$('.owl-slider-1').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    navText: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+    ],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+$('.owl-index').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    navText: [
+        '<i class="fas fa-chevron-left"></i>',
+        '<i class="fas fa-chevron-right"></i>'
+    ],
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:3
+        }
+    }
+})
+$(window).scroll(function() {
+	if ($(this).scrollTop() > 1) {
+		$('header').addClass("sticky");
+
+	} else {
+		$('header').removeClass("sticky");
+        
+	};
+});
+$(window).scroll(function() {
+
+    if ($(this).scrollTop()>0)
+     {
+        $('.social-media-content').hide();
+     }
+    else
+     {
+      $('.social-media-content').show();
+     }
+    });
