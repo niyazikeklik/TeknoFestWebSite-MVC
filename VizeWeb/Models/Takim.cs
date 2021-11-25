@@ -6,8 +6,9 @@ namespace VizeWeb.Models
 {
     public class Takim
     {
-        [Key]
+     
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
         public int TakimdId { get; set; }
         public string Name { get; set; }
         public int TakimUyeSayisi { get; set; }

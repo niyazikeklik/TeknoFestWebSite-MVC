@@ -6,6 +6,7 @@ namespace VizeWeb.Models
 {
     public class Uye
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Key]
         public int UyeOkulNo { get; set; }
