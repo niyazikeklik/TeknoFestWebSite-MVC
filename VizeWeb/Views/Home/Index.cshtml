@@ -381,6 +381,23 @@
                         @Html.Partial("linkler_tb16", null)
                         @Html.Partial("globalSiteTag_tb17", null)
 
+                        <script>
+                            $.ajax({
+                                type:'GET',
+                                URL:'https://www.teknofest.org/yarismaci-olanaklari.html'
+                                success: function (data) {
+                                    if (data!=null) {
+                                        $('#v-pills-destekler').html("");
+                                        $('#v-pills-destekler').load("saglananDetaylar_tb12");
+
+                                    }   
+                                    else {
+                                        swal('Hata Oluştu!', 'İşlem sırasında hata oluştu!!', 'warning');
+                                        return false;
+                                    }
+                                }
+                            })
+                        </script>
 
                         <!--Tab Menü Bitiş-->
 
