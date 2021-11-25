@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
+using VizeWeb.DatabaseContext2;
 using VizeWeb.Models;
 
 namespace VizeWeb.Controllers
@@ -14,7 +14,7 @@ namespace VizeWeb.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        DatabaseContext databaseContext = new DatabaseContext();
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -25,15 +25,16 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult SignUp(Uye uye)
         {
+            databaseContext.Uyeler.Add(uye);
+            databaseContext.SaveChanges();
             return View();
         }
 
-       // [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-       /* public IActionResult Error()
+        public IActionResult GetAllUye(Uye uye)
         {
-            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }*/
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
     }
 }

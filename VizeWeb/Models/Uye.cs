@@ -6,11 +6,11 @@ namespace VizeWeb.Models
 {
     public class Uye
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Required]
         [Key]
         public int UyeOkulNo { get; set; }
         public string UyeAdi { get; set; }
-        public int UyeYas { get; set; }
         public string UyeTelNo { get; set; }
         public string UyeMail { get; set; }
         public DateTime UyeDogumTarihi { get; set; }
