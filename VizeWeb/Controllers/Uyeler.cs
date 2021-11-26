@@ -1,6 +1,10 @@
 ﻿namespace VizeWeb.Controllers
 {
-    internal class Uyeler
+    public static class Uyeler
     {
+        public static void Topla()
+        {
+
+        }
     }
 }
