@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace VizeWeb.Models
 {
@@ -9,5 +10,6 @@ namespace VizeWeb.Models
         public string DuyuruBaslik { get; set; }
         public string DuyuruAciklama { get; set; }
         public string DuyuruDetayLink { get; set; }
+        public DateTime DuyuruTarihi { get; set; }
     }
 }
