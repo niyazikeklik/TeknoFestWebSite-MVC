@@ -46,6 +46,11 @@ namespace VizeWeb.Controllers
         {
             return PartialView("Tab" + PartialViewId, null);
         }
+        [HttpGet]
+        public PartialViewResult GetPartialView(int PartialViewId)
+        {
+            return PartialView("Tab" + PartialViewId, null);
+        }
 
         
     }

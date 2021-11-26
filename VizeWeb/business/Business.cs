@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,7 @@ using VizeWeb.Models;
 
 namespace VizeWeb.business
 {
+
     public static class Business
     {
         static DatabaseContext  databaseContext = new DatabaseContext();
@@ -17,6 +18,7 @@ namespace VizeWeb.business
             databaseContext.Duyurular.Add(duyurular);
             databaseContext.SaveChanges();
         }
+
         public static List<Duyuru> GetAllAnnouncement()
         {
             return databaseContext.Duyurular.ToList();
