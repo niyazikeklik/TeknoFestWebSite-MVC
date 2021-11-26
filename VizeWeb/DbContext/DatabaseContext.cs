@@ -10,7 +10,9 @@ namespace VizeWeb.DatabaseContext2
 {
     public class DatabaseContext : DbContext
     {
-        string connectionString = "Data Source=.;Initial Catalog=TeknoFestOdev;Integrated Security=True"/*DBSettings.Ins.SQLServer*/;
+
+        string connectionString = new DBSettings().Get().SQLServer;
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);

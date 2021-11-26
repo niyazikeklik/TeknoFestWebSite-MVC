@@ -19,26 +19,31 @@
     <title>Helikopter Tasarım Yarışması | TEKNOFEST</title>
     <meta name="keywords" content="Helikopter Tasarım Yarışması, teknofest,milliteknoloıjihamlesi,Teknoloji,İnsansız,Robotik,Roket,iha,Yapay Zeka,Technology,Humanity,Robotic,Rocket,Uav, Savaşan İHA">
     <meta name="description" content="Helikopter Tasarım Yarışması, Havacılık, Uzay ve Teknoloji Festivali. Türkiye&#39;nin Ayakları Yere Basmayan Festivali.">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/bm/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/cr-1.5.4/fh-3.2.0/r-2.2.9/sb-1.2.2/sp-1.4.0/sl-1.3.3/datatables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     <style>
-        .flipX video::-webkit-media-text-track-display {
-            transform: matrix(-1, 0, 0, 1, 0, 0) !important;
-        }
+.flipX video::-webkit-media-text-track-display {
+    transform: matrix(-1, 0, 0, 1, 0, 0) !important;
+}
 
-        .flipXY video::-webkit-media-text-track-display {
-            transform: matrix(-1, 0, 0, -1, 0, 0) !important;
-        }
+.flipXY video::-webkit-media-text-track-display {
+    transform: matrix(-1, 0, 0, -1, 0, 0) !important;
+}
 
-        .flipXYX video::-webkit-media-text-track-display {
-            transform: matrix(1, 0, 0, -1, 0, 0) !important;
-        }
-    </style>
+.flipXYX video::-webkit-media-text-track-display {
+    transform: matrix(1, 0, 0, -1, 0, 0) !important;
+}
+</style>
     <script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/popup.js" async=""></script>
     <script type="text/javascript" src="chrome-extension://aggiiclaiamajehmlfpkjmlbadmkledi/tat_popup.js" async=""></script>
 </head>
 
 <body>
-    ﻿
+    ﻿@Html.Partial("PopUp", null)
     <header class="">
         <div class="container-fluid space">
             <div class="row">
@@ -184,24 +189,13 @@
                             <nav role="navigation" class="menu" id="menu">
                                 <ul>
                                     <li>
-                                        <a href="https://www.teknofest.org/index.html">Ana Sayfa</a>
+                                        <a>Ana Sayfa</a>
                                     </li>
-                                    <li class="subnav">
-                                        <a href="https://www.teknofest.org/yarisma-detaylar-35.html#">Biz Kimiz</a>
-                                        <ul>
-                                            <li><a href="https://www.teknofest.org/hakkimizda.php">Hakkımızda</a></li>
-                                            <li><a href="https://www.teknofest.org/duzenleyici-kuruluslar.html">Düzenleyici ve Paydaş Kurumlar</a></li>
-                                            <li><a href="https://www.teknofest.org/basin-odasi.html">Basın Odası</a></li>
-                                        </ul>
-                                        <div class="toggle-link"></div>
+                                    <li>
+                                        <button onclick="modalGetir()">Takım Oluştur</button>
                                     </li>
-                                    <li class="subnav">
-                                        <a href="https://www.teknofest.org/yarisma-detaylar-35.html#">Etkinlikler</a>
-                                        <ul>
-                                            <li><a href="https://www.teknofest.org/gosteriler.html">Gösteriler</a></li>
-                                            <li><a href="https://www.teknofest.org/aktiviteler.html">Aktiviteler</a></li>
-                                        </ul>
-                                        <div class="toggle-link"></div>
+                                    <li>
+                                        <button role="button" onclick="modalGetir()">Üye Oluştur</button>
                                     </li>
                                 </ul>
                             </nav>
@@ -221,4 +215,10 @@
 <script src="~/originResources/bootstrap.js.indir"></script>
 <script src="~/originResources/bootstrap.bundle.min.js.indir"></script>
 <script src="~/js/site.js"></script>
+<script>
+    function modalGetir() {
+        $('#exampleModal').modal('toggle');
+    }
+</script>
+
 </html>
