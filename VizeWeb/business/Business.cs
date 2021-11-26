@@ -25,11 +25,10 @@ namespace VizeWeb.business
         {
             return databaseContext.Duyurular.OrderByDescending(x=>x.DuyuruTarihi).Take(5).ToList();
         }
-        public string NonTeamMembers()
+        public List<Uye> NonTeamMembers()
         {
             List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x => x.TakimID == null)).ToList();
-            string x = JsonConvert.SerializeObject(NonTeamMembers);
-            return x;
+            return NonTeamMembers;
         }
 
         public List<Takim> MembersByTeam(int takimID)
