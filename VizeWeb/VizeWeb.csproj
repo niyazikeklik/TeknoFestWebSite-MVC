@@ -5,6 +5,34 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Home\basvuru_formlari%28tb9-tb10%29\**" />
+    <Content Remove="Views\Home\basvuru_formlari%28tb9-tb10%29\**" />
+    <EmbeddedResource Remove="Views\Home\basvuru_formlari%28tb9-tb10%29\**" />
+    <None Remove="Views\Home\basvuru_formlari%28tb9-tb10%29\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\basvuruForm%28ileriKatagori%29_tb9.cshtml" />
+    <Content Remove="Views\Home\basvuruForm%28serbestKatagori%29_tb10.cshtml" />
+    <Content Remove="Views\Home\detaylar_tb11.cshtml" />
+    <Content Remove="Views\Home\eskiRaporlar_tb13.cshtml" />
+    <Content Remove="Views\Home\finalist_tb7.cshtml" />
+    <Content Remove="Views\Home\finalTasarimSablonu_tb5.cshtml" />
+    <Content Remove="Views\Home\galeri_tb8.cshtml" />
+    <Content Remove="Views\Home\globalSiteTag_tb17.cshtml" />
+    <Content Remove="Views\Home\linkler_tb16.cshtml" />
+    <Content Remove="Views\Home\saglananOlanaklar_tb12.cshtml" />
+    <Content Remove="Views\Home\sartname_tb2.cshtml" />
+    <Content Remove="Views\Home\sorular_tb4.cshtml" />
+    <Content Remove="Views\Home\tabMenuBaslangıç_tb1.cshtml" />
+    <Content Remove="Views\Home\takvim_tb3.cshtml" />
+    <Content Remove="Views\Home\video_tb15.cshtml" />
+    <Content Remove="Views\Home\yarismaAdresi_tb14.cshtml" />
+    <Content Remove="Views\Home\yarismaDokuman_tb6.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.12">
       <PrivateAssets>all</PrivateAssets>
@@ -15,6 +43,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
   </ItemGroup>
 
   <ItemGroup>

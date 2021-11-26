@@ -1,0 +1,12 @@
+﻿@model Duyuru
+<div class="announcement-container">
+    <div class="announcement-item">
+        <div class="announcement-item-detail">
+            <h3>@Model.DuyuruBaslik</h3>
+            <p>@Model.DuyuruAciklama</p>
+            <a href="@Model.DuyuruDetayLink">
+                <p class="buton"><i class="fas fa-long-arrow-alt-right"></i> Detaylar</p>
+            </a>
+        </div>
+    </div>
+</div>

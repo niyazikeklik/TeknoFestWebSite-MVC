@@ -72,8 +72,6 @@ namespace VizeWeb
                             UyeDogumTarihi=new DateTime(1999,5,6),
                             UyeMail="Esma@gmail.com",
                             UyeTelNo="053444554",
-                           
-                            
                         },
                 });
             databaseContext.SaveChanges();

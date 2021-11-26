@@ -74,6 +74,11 @@ namespace VizeWeb.Controllers
             string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
             return x;
         }
+        [HttpGet]
+        public PartialViewResult GetPartialView(int PartialViewId)
+        {
+            return PartialView("Tab" + PartialViewId, null);
+        }
 
     }
 }
