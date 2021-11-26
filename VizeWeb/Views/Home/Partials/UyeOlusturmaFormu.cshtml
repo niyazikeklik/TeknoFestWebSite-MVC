@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div style="text-align:center">
+    <div style="margin-top: 100px;"></div>
+    <h3 id="h3">Üyelik Formu</h3>
+</div>
+<div style="margin-right:100px;">
+    <div style="margin-left: 100px;">
+
+
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4">
+
+                <label for="validationCustom01" class="form-label">İsminiz</label>
+                <input name="UyeAdi" type="text" class="form-control" id="validationCustom01" placeholder="İsim" required>
+                <div class="valid-feedback">
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label">Okul Numaranız</label>
+                <input name="UyeOkulNo" type="text" class="form-control" id="validationCustom02" placeholder="Okul No" required>
+                <div class="valid-feedback">
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Telefon Numaranız</label>
+                <input name="UyeTelNo" type="text" class="form-control" id="validationCustom03" placeholder="05*********" required>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Mail Adresiniz</label>
+                <input name="UyeMail" type="text" class="form-control" id="validationCustom03" placeholder="email@example.com" required>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <label for="validationCustom03" class="form-label">Doğum Tarihinizi Yazınız</label>
+                <input name="UyeDogumTarihi" type="date" class="form-control" id="validationCustom03" placeholder="gün/ay/yıl" required>
+                <div class="invalid-feedback">
+                </div>
+            </div>
+
+            <td><input style="margin-top: 50px;" type="submit" name="buton" value="Üye Ol" class="btn btn-info mx-auto"> </td>
+
+
+        </form>
+    </div>
+</div>
+</div>
+<script src="app.js"></script>
