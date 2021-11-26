@@ -57,9 +57,6 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        
-
-
         public IActionResult GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
@@ -72,6 +69,8 @@ namespace VizeWeb.Controllers
             string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
             return x;
         }
+
+
         [HttpGet]
         public PartialViewResult GetPartialView(int PartialViewId)
         {

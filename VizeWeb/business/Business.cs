@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,16 @@ namespace VizeWeb.business
             List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x => x.TakimID == null)).ToList();
             string x = JsonConvert.SerializeObject(NonTeamMembers);
             return x;
+        }
+
+        public List<Takim> MembersByTeam(int takimID)
+        {
+            return databaseContext.Takimlar.Where(x => x.TakimdId == takimID).Include(x => x.TakimUyeleri).ToList();
+        }
+
+        public List<Takim> AllTeamWithMembers(int takimID)
+        {
+            return databaseContext.Takimlar.Where(x => true).Include(x => x.TakimUyeleri).ToList();
         }
     }
 }
