@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using VizeWeb.DatabaseContext2;
 using VizeWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VizeWeb.Controllers
 {
@@ -55,6 +56,15 @@ namespace VizeWeb.Controllers
             return View();
         }
 
+
+        public string NonTeamMembers()
+        {
+            List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x=>x.TakimID==null)).ToList();
+            string x = JsonConvert.SerializeObject(NonTeamMembers);
+            return x;
+        }
+
+
         public IActionResult GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
@@ -68,12 +78,21 @@ namespace VizeWeb.Controllers
             return x;
         }
 
+
         //hangi takımda hangi üyeler var
-        public IActionResult MembersByTeam()
+        //takımların üyeleri
+        public IActionResult MembersByTeam(int takimID)
         {
-            List<Takim> Takimlar = databaseContext.Takimlar.ToList();
+            databaseContext.Takimlar.Where(x => x.TakimdId == takimID).Include(x => x.TakimUyeleri);
+            return View();
+        }
+
+        public IActionResult AllTeamWithMembers()
+        {
+            List<Takim> Takimlar = databaseContext.Takimlar.Where(x=>true).Include(x=>x.TakimUyeleri).ToList();
             return View(Takimlar);
         }
+
 
     }
 }
