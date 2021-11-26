@@ -10,7 +10,7 @@ namespace VizeWeb.DatabaseContext2
 {
     public class DatabaseContext : DbContext
     {
-        string connectionString = AppSetting.DBSettings.Get().SQLServer;
+        string connectionString = DBSettings.Ins.SQLServer;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);

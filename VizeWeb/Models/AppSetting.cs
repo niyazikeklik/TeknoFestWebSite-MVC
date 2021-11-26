@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -8,22 +8,35 @@ using System.Threading.Tasks;
 
 namespace VizeWeb.Models
 {
-    public class AppSetting
+
+    public class DBSettings
     {
-        public class DBSettings
+
+        private static DBSettings instance;
+
+        public static DBSettings Ins
         {
-            public string SQLServer { get; set; }
-
-            public static DBSettings Get()
+            get
             {
-                IConfiguration configuration = new ConfigurationBuilder()
-               .AddJsonFile("appsettings.json", true, true)
-               .AddJsonFile("appsettings.Development.json", true, true)
-               .Build();
-                return configuration.GetSection("DBSettings")
-                   .Get<DBSettings>();
+                if (instance == null)
+                {
+                    instance = new DBSettings();
+                }
+                return instance;
             }
-
         }
+        private DBSettings()
+        {
+            IConfiguration configuration = new ConfigurationBuilder()
+           .AddJsonFile("appsettings.json", true, true)
+           .AddJsonFile("appsettings.Development.json", true, true)
+           .Build();
+            instance = configuration.GetSection("DBSettings")
+               .Get<DBSettings>();
+        }
+        public string SQLServer { get; set; }
+
+
+
     }
 }
