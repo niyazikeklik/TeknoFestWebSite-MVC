@@ -27,33 +27,33 @@ namespace VizeWeb.business
         {
             return databaseContext.Duyurular.OrderByDescending(x=>x.DuyuruTarihi).Take(5).ToList();
         }
-        public List<Uye> NonTeamMembers()
+        public static List<Uye> NonTeamMembers()
         {
             List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x => x.TakimID == null)).ToList();
             return NonTeamMembers;
         }
 
-        public List<Takim> MembersByTeam(int takimID)
+        public static List<Takim> MembersByTeam(int takimID)
         {
             return databaseContext.Takimlar.Where(x => x.TakimdId == takimID).Include(x => x.TakimUyeleri).ToList();
         }
 
-        public List<Takim> AllTeamWithMembers(int takimID)
+        public static List<Takim> AllTeamWithMembers(int takimID)
         {
             return databaseContext.Takimlar.Where(x => true).Include(x => x.TakimUyeleri).ToList();
         }
-        public string MembersWithoutTeamsByCategory(Alanlar alanlar)
+        public static string MembersWithoutTeamsByCategory(Alanlar alanlar)
         {
             List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan == alanlar)).ToList();
             string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
             return x;
         }
-        public List<Takim> GetAllTeam()
+        public static List<Takim> GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
             return Takimlar;
         }
-        public List<Takim> BestTeams()
+        public static List<Takim> BestTeams()
         {
             Random random = new Random();
             List<Takim> takimlar = new List<Takim>();
@@ -68,7 +68,7 @@ namespace VizeWeb.business
             }
             return takimlar;
         }
-        public List<Uye> GetAllUye()
+        public static List<Uye> GetAllUye()
         {
             List<Uye> Uyeler = databaseContext.Uyeler.ToList();
             return Uyeler;

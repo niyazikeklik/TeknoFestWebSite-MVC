@@ -40,18 +40,6 @@ namespace VizeWeb.Controllers
             databaseContext.Takimlar.Add(takim);
             databaseContext.SaveChanges();
             return View();
-        }
-
-        public PartialViewResult GetPartialView(int PartialViewId)
-        {
-            return PartialView("Tab" + PartialViewId, null);
-        }
-        [HttpGet]
-        public PartialViewResult GetPartialView(int PartialViewId)
-        {
-            return PartialView("Tab" + PartialViewId, null);
-        }
-
-        
+        }  
     }
 }
