@@ -27,6 +27,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult SignUp(Uye uye)
         {
             databaseContext.Uyeler.Add(uye);
@@ -34,7 +35,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public IActionResult GetAllUye(Uye uye)
+        public IActionResult GetAllUye()
         {
             List<Uye> Uyeler = databaseContext.Uyeler.ToList();
             return View(Uyeler);
@@ -56,13 +57,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-
-        public string NonTeamMembers()
-        {
-            List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x=>x.TakimID==null)).ToList();
-            string x = JsonConvert.SerializeObject(NonTeamMembers);
-            return x;
-        }
+        
 
 
         public IActionResult GetAllTeam()
@@ -77,22 +72,12 @@ namespace VizeWeb.Controllers
             string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
             return x;
         }
-
-
-        //hangi takımda hangi üyeler var
-        //takımların üyeleri
-        public IActionResult MembersByTeam(int takimID)
+        [HttpGet]
+        public PartialViewResult GetPartialView(int PartialViewId)
         {
-            databaseContext.Takimlar.Where(x => x.TakimdId == takimID).Include(x => x.TakimUyeleri);
-            return View();
+            return PartialView("Tab" + PartialViewId, null);
         }
 
-        public IActionResult AllTeamWithMembers()
-        {
-            List<Takim> Takimlar = databaseContext.Takimlar.Where(x=>true).Include(x=>x.TakimUyeleri).ToList();
-            return View(Takimlar);
-        }
-
-
+        
     }
 }

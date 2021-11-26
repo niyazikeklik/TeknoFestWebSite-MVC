@@ -3,45 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VizeWeb.DatabaseContext2;
 
 namespace VizeWeb.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211125182808_sonv1")]
+    partial class sonv1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("VizeWeb.Models.Duyuru", b =>
-                {
-                    b.Property<int>("DuyuruID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("DuyuruAciklama")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DuyuruBaslik")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DuyuruDetayLink")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DuyuruTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("DuyuruID");
-
-                    b.ToTable("Duyurular");
-                });
 
             modelBuilder.Entity("VizeWeb.Models.Takim", b =>
                 {
