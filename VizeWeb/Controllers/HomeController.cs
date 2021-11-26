@@ -55,13 +55,6 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public string NonTeamMembers()
-        {
-            List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x=>x.TakimID==null)).ToList();
-            string x = JsonConvert.SerializeObject(NonTeamMembers);
-            return x;
-        }
-
         public IActionResult GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
@@ -73,6 +66,13 @@ namespace VizeWeb.Controllers
             List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan==alanlar)).ToList();
             string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
             return x;
+        }
+
+        //hangi takımda hangi üyeler var
+        public IActionResult MembersByTeam()
+        {
+            List<Takim> Takimlar = databaseContext.Takimlar.ToList();
+            return View(Takimlar);
         }
 
     }
