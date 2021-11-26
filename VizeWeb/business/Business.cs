@@ -40,5 +40,36 @@ namespace VizeWeb.business
         {
             return databaseContext.Takimlar.Where(x => true).Include(x => x.TakimUyeleri).ToList();
         }
+        public string MembersWithoutTeamsByCategory(Alanlar alanlar)
+        {
+            List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan == alanlar)).ToList();
+            string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
+            return x;
+        }
+        public List<Takim> GetAllTeam()
+        {
+            List<Takim> Takimlar = databaseContext.Takimlar.ToList();
+            return Takimlar;
+        }
+        public List<Takim> BestTeams()
+        {
+            Random random = new Random();
+            List<Takim> takimlar = new List<Takim>();
+            int totalTakimSayisi = databaseContext.Takimlar.Count();
+            for (int i = 0; i < 10; i++)
+            {
+                var randomTakim = databaseContext.Takimlar.Find(random.Next(0, totalTakimSayisi));
+                if (!takimlar.Contains(randomTakim))
+                {
+                    takimlar.Add(randomTakim);
+                }
+            }
+            return takimlar;
+        }
+        public List<Uye> GetAllUye()
+        {
+            List<Uye> Uyeler = databaseContext.Uyeler.ToList();
+            return Uyeler;
+        }
     }
 }
