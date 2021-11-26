@@ -8,27 +8,27 @@ using VizeWeb.Models;
 
 namespace VizeWeb.business
 {
-    public class Business
+    public static class Business
     {
-        DatabaseContext databaseContext = new DatabaseContext();
-        public void AddAnnouncement(Duyuru duyurular)
+        static DatabaseContext  databaseContext = new DatabaseContext();
+        public static void AddAnnouncement(Duyuru duyurular)
         {
             databaseContext.Duyurular.Add(duyurular);
             databaseContext.SaveChanges();
         }
-        public List<Duyuru> GetAllAnnouncement()
+        public static List<Duyuru> GetAllAnnouncement()
         {
             return databaseContext.Duyurular.ToList();
         }
-        public List<Duyuru> LastFiveAnnouncements()
+        public static List<Duyuru> LastFiveAnnouncements()
         {
             return databaseContext.Duyurular.OrderByDescending(x=>x.DuyuruTarihi).Take(5).ToList();
         }
-        public string NonTeamMembers()
+        public static List<Uye> NonTeamMembers()
         {
             List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x => x.TakimID == null)).ToList();
-            string x = JsonConvert.SerializeObject(NonTeamMembers);
-            return x;
+            return NonTeamMembers;
+           
         }
     }
 }

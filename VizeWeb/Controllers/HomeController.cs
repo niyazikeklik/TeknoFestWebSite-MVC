@@ -56,8 +56,6 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        
-
         public IActionResult GetAllTeam()
         {
             List<Takim> Takimlar = databaseContext.Takimlar.ToList();
