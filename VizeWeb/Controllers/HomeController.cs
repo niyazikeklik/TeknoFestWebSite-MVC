@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using VizeWeb.DatabaseContext2;
 using VizeWeb.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace VizeWeb.Controllers
 {
@@ -34,41 +35,16 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public IActionResult GetAllUye()
+        public IActionResult AddTeam(Takim takim)
         {
-            List<Uye> Uyeler = databaseContext.Uyeler.ToList();
-            return View(Uyeler);
-        }
-
-        public IActionResult BestTeams()
-        {
-            Random random = new Random();
-            List<Takim> takimlar= new List<Takim>();
-            int totalTakimSayisi=databaseContext.Takimlar.Count();
-            for (int i = 0; i < 10; i++)
-            {
-                var randomTakim=databaseContext.Takimlar.Find(random.Next(0, totalTakimSayisi));
-                if (!takimlar.Contains(randomTakim))
-                {
-                    takimlar.Add(randomTakim);
-                }
-            }
+            databaseContext.Takimlar.Add(takim);
+            databaseContext.SaveChanges();
             return View();
         }
 
-        
-
-        public IActionResult GetAllTeam()
+        public PartialViewResult GetPartialView(int PartialViewId)
         {
-            List<Takim> Takimlar = databaseContext.Takimlar.ToList();
-            return View(Takimlar);
-        }
-
-        public string MembersWithoutTeamsByCategory(Alanlar alanlar)
-        {
-            List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan==alanlar)).ToList();
-            string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
-            return x;
+            return PartialView("Tab" + PartialViewId, null);
         }
         [HttpGet]
         public PartialViewResult GetPartialView(int PartialViewId)
