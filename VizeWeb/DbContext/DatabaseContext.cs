@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace VizeWeb.DatabaseContext2
 {
     public class DatabaseContext : DbContext
     {
-        string connectionString = @$"Data Source=.\SQLEXPRESS;Initial Catalog=TeknoFestOdev;Integrated Security=True";
+        string connectionString = DBSettings.Ins.SQLServer;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(connectionString);
