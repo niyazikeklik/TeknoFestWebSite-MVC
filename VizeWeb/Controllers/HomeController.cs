@@ -26,6 +26,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
+        [HttpPost]
         public IActionResult SignUp(Uye uye)
         {
             databaseContext.Uyeler.Add(uye);
@@ -33,7 +34,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public IActionResult GetAllUye(Uye uye)
+        public IActionResult GetAllUye()
         {
             List<Uye> Uyeler = databaseContext.Uyeler.ToList();
             return View(Uyeler);
@@ -55,12 +56,7 @@ namespace VizeWeb.Controllers
             return View();
         }
 
-        public string NonTeamMembers()
-        {
-            List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x=>x.TakimID==null)).ToList();
-            string x = JsonConvert.SerializeObject(NonTeamMembers);
-            return x;
-        }
+        
 
         public IActionResult GetAllTeam()
         {
@@ -80,5 +76,6 @@ namespace VizeWeb.Controllers
             return PartialView("Tab" + PartialViewId, null);
         }
 
+        
     }
 }
