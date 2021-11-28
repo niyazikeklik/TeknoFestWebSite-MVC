@@ -3,44 +3,23 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using VizeWeb.DatabaseContext2;
 
 namespace VizeWeb.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211128110126_fkekldndi")]
+    partial class fkekldndi
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("VizeWeb.Models.Basvuru", b =>
-                {
-                    b.Property<int>("YarismaID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("BasvuruTarihi")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("TakimID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("YarismaName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("YarismaID");
-
-                    b.HasIndex("TakimID");
-
-                    b.ToTable("Basvurular");
-                });
 
             modelBuilder.Entity("VizeWeb.Models.Duyuru", b =>
                 {
@@ -114,17 +93,6 @@ namespace VizeWeb.Migrations
                     b.ToTable("Uyeler");
                 });
 
-            modelBuilder.Entity("VizeWeb.Models.Basvuru", b =>
-                {
-                    b.HasOne("VizeWeb.Models.Takim", "BasvuranTakim")
-                        .WithMany("Yarismalar")
-                        .HasForeignKey("TakimID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BasvuranTakim");
-                });
-
             modelBuilder.Entity("VizeWeb.Models.Uye", b =>
                 {
                     b.HasOne("VizeWeb.Models.Takim", "UyeTakim")
@@ -137,8 +105,6 @@ namespace VizeWeb.Migrations
             modelBuilder.Entity("VizeWeb.Models.Takim", b =>
                 {
                     b.Navigation("TakimUyeleri");
-
-                    b.Navigation("Yarismalar");
                 });
 #pragma warning restore 612, 618
         }

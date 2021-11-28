@@ -1,9 +1,13 @@
 using Microsoft.EntityFrameworkCore;
+
 using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
+using VizeWeb.Business;
 using VizeWeb.DatabaseContext2;
 using VizeWeb.Models;
 
@@ -12,66 +16,76 @@ namespace VizeWeb.business
 
     public static class Business
     {
-        static DatabaseContext  databaseContext = new DatabaseContext();
-        public static void AddAnnouncement(Duyuru duyurular)
+ 
+        public static Tuple<List<string>, List<List<string>>> TableUyeModelCreate(List<Uye> uyeler)
         {
-            databaseContext.Duyurular.Add(duyurular);
-            databaseContext.SaveChanges();
-        }
-
-        public static List<Duyuru> GetAllAnnouncement()
-        {
-            return databaseContext.Duyurular.ToList();
-        }
-        public static List<Duyuru> LastFiveAnnouncements()
-        {
-            return databaseContext.Duyurular.OrderByDescending(x=>x.DuyuruTarihi).Take(5).ToList();
-        }
-        public static List<Uye> NonTeamMembers()
-        {
-            List<Uye> NonTeamMembers = (databaseContext.Uyeler.Where(x => x.TakimID == null)).ToList();
-            return NonTeamMembers;
-        }
-
-        public static List<Takim> MembersByTeam(int takimID)
-        {
-            return databaseContext.Takimlar.Where(x => x.TakimdId == takimID).Include(x => x.TakimUyeleri).ToList();
-        }
-
-        public static List<Takim> AllTeamWithMembers(int takimID)
-        {
-            return databaseContext.Takimlar.Where(x => true).Include(x => x.TakimUyeleri).ToList();
-        }
-        public static string MembersWithoutTeamsByCategory(Alanlar alanlar)
-        {
-            List<Uye> MembersWithoutTeamsByCategory = (databaseContext.Uyeler.Where(x => x.TakimID == null && x.UyeAlan == alanlar)).ToList();
-            string x = JsonConvert.SerializeObject(MembersWithoutTeamsByCategory);
-            return x;
-        }
-        public static List<Takim> GetAllTeam()
-        {
-            List<Takim> Takimlar = databaseContext.Takimlar.ToList();
-            return Takimlar;
-        }
-        public static List<Takim> BestTeams()
-        {
-            Random random = new Random();
-            List<Takim> takimlar = new List<Takim>();
-            int totalTakimSayisi = databaseContext.Takimlar.Count();
-            for (int i = 0; i < 10; i++)
+            var x = typeof(Uye).GetProperties().ToList();
+            var y = x.Select(x => x.Name).ToList();
+            y.Remove("TakimID");
+            List<string> Sutunlar = new List<string>(y);
+            List<List<string>> Satirlar = new();
+            foreach (var item in uyeler)
             {
-                var randomTakim = databaseContext.Takimlar.Find(random.Next(0, totalTakimSayisi));
-                if (!takimlar.Contains(randomTakim))
-                {
-                    takimlar.Add(randomTakim);
-                }
+                List<string> Satir = new() {
+                    item.UyeOkulNo.ToString(),
+                    item.UyeAdi,
+                    item.UyeTelNo,
+                    item.UyeMail,
+                    item.UyeDogumTarihi.ToShortDateString(),
+                    item.UyeAlan.ToString(),
+                    item.UyeTakim?.Name,
+
+                };
+                Satirlar.Add(Satir);
             }
-            return takimlar;
+            var model = new Tuple<List<string>, List<List<string>>>(Sutunlar, Satirlar);
+            return model;
         }
-        public static List<Uye> GetAllUye()
+        public static Tuple<List<string>, List<List<string>>> TableTakimModelCreate()
         {
-            List<Uye> Uyeler = databaseContext.Uyeler.ToList();
-            return Uyeler;
+            var x = typeof(Takim).GetProperties().ToList();
+            var y = x.Select(x => x.Name);
+            List<string> Sutunlar = new List<string>(y);
+            List<List<string>> Satirlar = new();
+            foreach (var item in TakimDTO.AllTeamWithMembers(new DatabaseContext()))
+            {
+                string takimUyeleriHTML = "";
+                foreach (var itemUye in item.TakimUyeleri)
+                {
+                    takimUyeleriHTML += itemUye.UyeAdi + " - " + itemUye.UyeAlan + " | ";
+                }
+
+                List<string> Satir = new() {
+                    item.TakimdId.ToString(),
+                    item.Name,
+                    item.TakimUyeleri.Count().ToString(),
+                    takimUyeleriHTML,
+                };
+                Satirlar.Add(Satir);
+            }
+            var model = new Tuple<List<string>, List<List<string>>>(Sutunlar, Satirlar);
+            return model;
+        }
+
+        public static Tuple<List<string>, List<List<string>>> TableBasvurularModelCreate()
+        {
+            var x = typeof(Basvuru).GetProperties().ToList();
+            var y = x.Select(x => x.Name).ToList();
+            y.Remove("TakimID");
+            List<string> Sutunlar = new List<string>(y);
+            List<List<string>> Satirlar = new();
+            foreach (var item in BasvuruDTO.GetAllBasvuruWithTakim(new DatabaseContext()))
+            {
+                List<string> Satir = new() {
+                    item.YarismaID.ToString(),
+                    item.YarismaName,
+                    item.BasvuranTakim.Name,
+                    item.BasvuruTarihi.ToShortDateString(),
+                };
+                Satirlar.Add(Satir);
+            }
+            var model = new Tuple<List<string>, List<List<string>>>(Sutunlar, Satirlar);
+            return model;
         }
     }
 }

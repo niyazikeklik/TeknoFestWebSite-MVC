@@ -12,7 +12,6 @@ namespace VizeWeb.Models
 
     public  class DBSettings
     {
-
         public string SQLServer { get; set; }
 
         public DBSettings Get()

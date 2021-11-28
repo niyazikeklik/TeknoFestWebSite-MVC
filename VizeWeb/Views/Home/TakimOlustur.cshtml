@@ -3,24 +3,80 @@
 *@
 @{
 }
-<form>
-    <div class="form-group">
-        <label for="exampleFormControlInput1">Email address</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlSelect1">Example select</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-            @foreach (Uye item in VizeWeb.business.Business.NonTeamMembers())
+<div style="text-align:center">
+    <h3 id="h3">Takım Oluştur</h3>
+</div>
+<div style="margin-right:100px;">
+    <div style="margin-left: 100px;">
+        <form class="g-3 needs-validation">
+            <div class="row">
+                <div class="col">
+
+                    <label style="font-weight:700;" for="validationCustom01" class="form-label">Takım Adınız: </label>
+                    <input name="Name" type="text" class="form-control" id="TakimName" placeholder="İsim" required>
+                    <div class="valid-feedback">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col">
+                    <label style="font-weight:700;" for="validationCustom02" class="form-label">Takım Üye Sayınız:</label>
+                    <select name="TakimUyeSayisi" class="form-control" id="takimUyeSayisi">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+            </div>
+            @for (int i = 0; i < 5; i++)
             {
-                <option>@item.UyeAdi - @item.UyeAlan</option>
+                <br />
+                <div class="row">
+                    <div class="form-group">
+                        <label style="font-weight:700;" for="exampleFormControlSelect1">@(i+1). Üye seçiniz</label>
+                        <select name="TakimUyeleri" class="form-control" id="uye_@i">
+                            @foreach (Uye item in VizeWeb.business.UyeDTO.NonTeamMembers(new VizeWeb.DatabaseContext2.DatabaseContext()))
+                            {
+                                <option>@item.UyeOkulNo - @item.UyeAdi - @item.UyeAlan</option>
+                            }
+                        </select>
+                    </div>
+                </div>
             }
+            <td>
+                <input style="margin-top: 50px;" id="takimolusturbtn" type="submit" name="buton" onclick="CreateTakim()" value="Takım Oluştur" class="btn btn-info mx-auto col">
+            </td>
+        </form>
+
+    </div>
+</div>
+<script>
 
 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="exampleFormControlTextarea1">Example textarea</label>
-        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-    </div>
-</form>
+    function CreateTakim(){
+            var obj = new Object();
+            obj.Name = $("#TakimName").val();
+            obj.TakimUyeSayisi = $("#takimUyeSayisi").val();
+            obj.TakimUyeleri =  [
+                $("#uye_0").val(),
+                $("#uye_1").val(),
+                $("#uye_2").val(),
+                $("#uye_3").val(),
+                $("#uye_4").val()
+            ];
+         $.ajax({
+            type: "POST",
+            url: '/Home/AddTeam',
+            data: { Model: JSON.stringify(obj)},
+            dataType: "text",
+            success: function (msg) {
+                if (msgShow) alert("Başarıyla kaydedildi: " + msg)
+            }
+        });
+    }
+</script>
+
+<script src="app.js"></script>

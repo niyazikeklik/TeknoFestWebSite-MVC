@@ -16,8 +16,11 @@ namespace VizeWeb.Models
         public DateTime UyeDogumTarihi { get; set; }
         public Alanlar UyeAlan { get; set; }
 #nullable enable
+        [ForeignKey("Takim")]
+        public int? TakimID { get; set; }
         public Takim? UyeTakim { get; set; }
 #nullable disable
-        public int? TakimID { get; set; }
+   
+   
     }
 }

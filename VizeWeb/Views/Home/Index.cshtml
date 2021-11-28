@@ -1,4 +1,6 @@
 ﻿@using VizeWeb.Controllers
+@using VizeWeb.DatabaseContext2
+@using VizeWeb.business
 
 
 <div class="container-fluid">
@@ -38,20 +40,19 @@
             <div class="row">
                 <div class="col-md-4 yarismalar-sol-menu-1">
                     <!--Tab Menü Başlangıç-->
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical" style="margin-left: 100px; text-align: center;">
                         <a class="nav-link active" role="tab" aria-controls="v-pills-hakkinda">Yarışma Hakkında</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-Basvurular">Tüm Başvurular</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TumUyeler">Tüm Üyelerimiz</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TumTakimlar">Tüm Takımlarımız</a>
+                        <a class="nav-link" role="tab" aria-controls="v-pills-TakimiOlmayanUyeler">Takımı Olmayan Üyelerimiz</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-sartname">Yarışma Şartnamesi</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-takvim">Yarışma Takvimi</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-video">Yarışma Videoları</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-sorular">Sık Sorulan Sorular</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-rapor">Rapor Şablonları</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-finalist">Finalist Takımlar</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-dereceler">Dereceler</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-oduller">Ödüller</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-galeri">Galeri</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-destekler">Destekler</a>
-                        <a class="nav-link" role="tab" aria-controls="v-pills-eskirapor">Geçmiş Yıl Raporları</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-adres">Yarışma Yeri Ve Tarihi</a>
+
                     </div>
 
                     <!--Tab Menü Bitiş-->
@@ -59,23 +60,20 @@
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content" id="v-pills-tabContent">
-
-                        @Html.Partial("PartialView\\Tab1", null)
-                        @Html.Partial("PartialView\\Tab2", null)
-                        @Html.Partial("PartialView\\Tab3", null)
-                        @Html.Partial("PartialView\\Tab4", null)
-                        @Html.Partial("PartialView\\Tab5", null)
-                        @Html.Partial("PartialView\\Tab6", null)
-                        @Html.Partial("PartialView\\Tab7", null)
-                        @Html.Partial("PartialView\\Tab8", null)
-                        @Html.Partial("PartialView\\Tab9", null)
-                        @Html.Partial("PartialView\\Tab10", null)
-                        @Html.Partial("PartialView\\Tab11", null)
-                        @Html.Partial("PartialView\\Tab12", null)
-                        @Html.Partial("PartialView\\Tab13", null)
-                        @Html.Partial("PartialView\\Tab14", null)
-                        @Html.Partial("PartialView\\Tab15", null)
-                        @Html.Partial("PartialView\\Tab16", null)
+                        @Html.Partial("PartialView\\TumUyeler", null)
+                         @Html.Partial("PartialView\\TumBasvurular", null)
+                        @Html.Partial("PartialView\\TumTakimlar", null)
+                        @Html.Partial("PartialView\\TakimiOlmayanUyeler", null)
+                        @Html.Partial("PartialView\\YarismaHakkinda", null)
+                        @Html.Partial("PartialView\\Sartname", null)
+                        @Html.Partial("PartialView\\Takvim", null)
+                        @Html.Partial("PartialView\\TasarimSablon", null)
+                        @Html.Partial("PartialView\\Dokuman", null)
+                        @Html.Partial("PartialView\\Oduller", null)
+                        @Html.Partial("PartialView\\Galeri", null)
+                        @Html.Partial("PartialView\\Olanaklar", null)
+                        @Html.Partial("PartialView\\Raporlar", null)
+                        @Html.Partial("PartialView\\Yer", null)
                     </div>
                 </div>
             </div>
@@ -85,20 +83,15 @@
                         <div class="announcement-content">
                             <div class="announcement-head">
                                 <h3>Duyurular</h3>
-                                <a href="#"> <button type="button" class="btn btn-outline-primary">Tüm Duyurular İçin Tıklayın</button></a>
                             </div>
                         </div>
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru", DuyuruAciklama= "Deneme Duyuru Aciklama", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru2", DuyuruAciklama= "Deneme Duyuru Aciklama2", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru3", DuyuruAciklama= "Deneme Duyuru Aciklama3", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru4", DuyuruAciklama= "Deneme Duyuru Aciklama4", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru5", DuyuruAciklama= "Deneme Duyuru Aciklama5", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru6", DuyuruAciklama= "Deneme Duyuru Aciklama6", DuyuruDetayLink = "www.google.com"})
-                        @Html.Partial("PartialView\\Duyuru", new Duyuru(){ DuyuruBaslik = "Deneme Duyuru7", DuyuruAciklama= "Deneme Duyuru Aciklama7", DuyuruDetayLink = "www.google.com"})
+                        @foreach (var item in new DatabaseContext().GetAllAnnouncement())
+                        {
+                            @Html.Partial("PartialView\\Duyuru", item)
+                        }
                     </div>
                 </div>
             </div>
-
         </div>
 
 

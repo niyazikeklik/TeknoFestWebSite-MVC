@@ -1,0 +1,29 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model Tuple<List<string>, List<List<string>>>
+@{
+    List<string> Columns = Model.Item1;
+    List<List<string>> Satir = Model.Item2;
+}
+<table class="table">
+    <thead>
+        <tr>
+            @foreach (string item in Columns)
+            {
+                <th scope="col">@item</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Satir)
+        {
+            <tr>
+                @for (var i = 0; i < @item.Count(); i++)
+                {
+                    <td>@item[i]</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>

@@ -14,8 +14,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="~/originResources/style.css">
     <link rel="stylesheet" href="~/originResources/all.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <link href="https://www.teknofest.org/src/img/favicon.ico" rel="icon" data-n-head="true" sizes="16x16" type="image/png">
+
     <title>Helikopter Tasarım Yarışması | TEKNOFEST</title>
     <meta name="keywords" content="Helikopter Tasarım Yarışması, teknofest,milliteknoloıjihamlesi,Teknoloji,İnsansız,Robotik,Roket,iha,Yapay Zeka,Technology,Humanity,Robotic,Rocket,Uav, Savaşan İHA">
     <meta name="description" content="Helikopter Tasarım Yarışması, Havacılık, Uzay ve Teknoloji Festivali. Türkiye&#39;nin Ayakları Yere Basmayan Festivali.">
@@ -43,7 +42,9 @@
 </head>
 
 <body>
-    ﻿@Html.Partial("PopUp", null)
+    ﻿@Html.Partial("PopUp", new List<string>(){"UyeEkle"})
+    ﻿@Html.Partial("PopUp", new List<string>(){"Basvuru"})
+    ﻿@Html.Partial("PopUp", new List<string>(){"TakimOlustur"})
     <header class="">
         <div class="container-fluid space">
             <div class="row">
@@ -189,13 +190,13 @@
                             <nav role="navigation" class="menu" id="menu">
                                 <ul>
                                     <li>
-                                        <a>Ana Sayfa</a>
+                                       @Html.ActionLink("Ana sayfa", "Index", "Home")
                                     </li>
                                     <li>
-                                        <button onclick="modalGetir()">Takım Oluştur</button>
+                                        <a role="button" class="modelcreator" value="TakimOlustur">Takım Oluştur</a>
                                     </li>
                                     <li>
-                                        <button role="button" onclick="modalGetir()">Üye Oluştur</button>
+                                        <a role="button" class="modelcreator" value="UyeEkle">Üye Oluştur</a>
                                     </li>
                                 </ul>
                             </nav>
@@ -216,9 +217,11 @@
 <script src="~/originResources/bootstrap.bundle.min.js.indir"></script>
 <script src="~/js/site.js"></script>
 <script>
-    function modalGetir() {
-        $('#exampleModal').modal('toggle');
-    }
+    $(".modelcreator").on("click", function(){
+        var x = $(this).attr("value");
+          $('#'+x).modal('toggle');
+    })
+
 </script>
 
 </html>
