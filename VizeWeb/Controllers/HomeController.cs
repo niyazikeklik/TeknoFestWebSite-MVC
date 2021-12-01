@@ -37,11 +37,11 @@ namespace VizeWeb.Controllers
             return View("Index");
         }
 
-     
         [HttpPost]
         public IActionResult AddTeam(string Model)
         {
-            var x = JsonConvert.DeserializeObject<TakimResult>(Model);
+            //jason tipinde string gelen üye idyi cümlede ayıklayıp üye tipine dönüştürüp yeni bir takım ekledik.
+            TakimResult x = JsonConvert.DeserializeObject<TakimResult>(Model);//modelı takim result tipine ceviriyorum.
             List<Uye> TakimUyeleri = new List<Uye>();
             foreach (var item in x.TakimUyeleri)
             {
@@ -50,12 +50,13 @@ namespace VizeWeb.Controllers
                 TakimUyeleri.Add(takimuye);
             }
             databaseContext.Takimlar.Add(
-                             new Takim() {
+                             new Takim()
+                             {
                                  Name = x.Name,
                                  TakimUyeleri = TakimUyeleri,
-                                 TakimUyeSayisi = x.TakimUyeSayisi,
+                                 TakimUyeSayisi = TakimUyeleri.Count()
                              }
-                         );
+                         ); 
             databaseContext.SaveChanges();
             return View("Index");
         }
