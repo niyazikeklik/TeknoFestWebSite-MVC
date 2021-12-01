@@ -14,7 +14,7 @@ namespace VizeWeb.Controllers
         {
             DatabaseContext databaseContext = new DatabaseContext();
             var model = databaseContext.GetAllAnnouncement();
-            return View(model);
+            return View("Duyuru",model);
         }
 
     }
