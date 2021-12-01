@@ -6,7 +6,7 @@
     List<string> Columns = Model.Item1;
     List<List<string>> Satir = Model.Item2;
 }
-<table class="table">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             @foreach (string item in Columns)
@@ -23,6 +23,7 @@
                 {
                     <td>@item[i]</td>
                 }
+                <td><button class ="button btn-danger" tablo="Uyeler" value="">Sil</button></td>
             </tr>
         }
     </tbody>

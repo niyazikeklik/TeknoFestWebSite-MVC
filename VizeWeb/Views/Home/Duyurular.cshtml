@@ -1,0 +1,21 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model List<Duyuru>
+@{
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="announcement-content">
+                <div class="announcement-head">
+                    <h3>Duyurular</h3>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+                @Html.Partial("PartialView\\Duyuru", item)
+            }
+        </div>
+    </div>
+</div>

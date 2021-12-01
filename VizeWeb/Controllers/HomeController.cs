@@ -53,7 +53,7 @@ namespace VizeWeb.Controllers
                              new Takim() {
                                  Name = x.Name,
                                  TakimUyeleri = TakimUyeleri,
-                                 TakimUyeSayisi = x.TakimUyeSayisi,
+                                 TakimUyeSayisi = TakimUyeleri.Count,
                              }
                          );
             databaseContext.SaveChanges();
@@ -72,6 +72,12 @@ namespace VizeWeb.Controllers
                          ); ;
             databaseContext.SaveChanges();
             return View("Index");
+        }
+        [HttpGet]
+        public IActionResult Duyurular()
+        {
+            var model = new DatabaseContext().GetAllAnnouncement();
+            return View("Duyurular", model);
         }
     }
 }

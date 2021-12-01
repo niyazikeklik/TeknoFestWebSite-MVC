@@ -46,6 +46,7 @@
                         <a class="nav-link" role="tab" aria-controls="v-pills-TumUyeler">Tüm Üyelerimiz</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-TumTakimlar">Tüm Takımlarımız</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-TakimiOlmayanUyeler">Takımı Olmayan Üyelerimiz</a>
+                          <a class="nav-link" role="tab" aria-controls="v-pills-EnIyiTakimlar">En İyi Takımlarımız</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-sartname">Yarışma Şartnamesi</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-takvim">Yarışma Takvimi</a>
                         <a class="nav-link" role="tab" aria-controls="v-pills-rapor">Rapor Şablonları</a>
@@ -61,10 +62,12 @@
                 <div class="col-md-8">
                     <div class="tab-content" id="v-pills-tabContent">
                         @Html.Partial("PartialView\\TumUyeler", null)
-                         @Html.Partial("PartialView\\TumBasvurular", null)
+                        @Html.Partial("PartialView\\TumBasvurular", null)
                         @Html.Partial("PartialView\\TumTakimlar", null)
                         @Html.Partial("PartialView\\TakimiOlmayanUyeler", null)
                         @Html.Partial("PartialView\\YarismaHakkinda", null)
+                        @Html.Partial("PartialView\\EnIyiTakimlar", null)
+
                         @Html.Partial("PartialView\\Sartname", null)
                         @Html.Partial("PartialView\\Takvim", null)
                         @Html.Partial("PartialView\\TasarimSablon", null)
@@ -83,9 +86,11 @@
                         <div class="announcement-content">
                             <div class="announcement-head">
                                 <h3>Duyurular</h3>
+                                 <a href="@Url.ActionLink("Duyurular", "Home")"> <button type="button" class="btn btn-outline-primary">Tüm Duyurular İçin Tıklayın</button></a>
+                                </div>
                             </div>
                         </div>
-                        @foreach (var item in new DatabaseContext().GetAllAnnouncement())
+                        @foreach (var item in new DatabaseContext().LastFiveAnnouncements())
                         {
                             @Html.Partial("PartialView\\Duyuru", item)
                         }

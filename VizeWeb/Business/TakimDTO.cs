@@ -25,14 +25,17 @@ namespace VizeWeb.business
         public static List<Takim> BestTeams(this DatabaseContext databaseContext)
         {
             Random random = new Random();
+            int count = 5;
             List<Takim> takimlar = new List<Takim>();
             int totalTakimSayisi = databaseContext.Takimlar.Count();
-            for (int i = 0; i < 10; i++)
+            if (totalTakimSayisi < 5) count = totalTakimSayisi;
+            for (int i = 0; i < count;)
             {
-                var randomTakim = databaseContext.Takimlar.Find(random.Next(0, totalTakimSayisi));
+                var randomTakim = databaseContext.Takimlar.Include(x=> x.TakimUyeleri).ToList()[random.Next(0, totalTakimSayisi)];
                 if (!takimlar.Contains(randomTakim))
                 {
                     takimlar.Add(randomTakim);
+                    i++;
                 }
             }
             return takimlar;
