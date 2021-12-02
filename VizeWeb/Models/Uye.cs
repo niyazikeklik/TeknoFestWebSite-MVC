@@ -6,8 +6,8 @@ namespace VizeWeb.Models
 {
     public class Uye
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]//idendity yok elle girilecek.
+        [Required]//boş geçilemez.
         [Key]
         public int UyeOkulNo { get; set; }
         public string UyeAdi { get; set; }

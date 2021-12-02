@@ -37,11 +37,11 @@ namespace VizeWeb.Controllers
             return View("Index");
         }
 
-     
         [HttpPost]
         public IActionResult AddTeam(string Model)
         {
-            var x = JsonConvert.DeserializeObject<TakimResult>(Model);
+            //jason tipinde string gelen üye idyi cümlede ayıklayıp üye tipine dönüştürüp yeni bir takım ekledim.
+            TakimResult x = JsonConvert.DeserializeObject<TakimResult>(Model);//modelı takim result tipine ceviriyorum.
             List<Uye> TakimUyeleri = new List<Uye>();
             foreach (var item in x.TakimUyeleri)
             {
@@ -50,12 +50,13 @@ namespace VizeWeb.Controllers
                 TakimUyeleri.Add(takimuye);
             }
             databaseContext.Takimlar.Add(
-                             new Takim() {
+                             new Takim()
+                             {
                                  Name = x.Name,
                                  TakimUyeleri = TakimUyeleri,
                                  TakimUyeSayisi = TakimUyeleri.Count,
                              }
-                         );
+                         ); 
             databaseContext.SaveChanges();
             return View("Index");
         }
@@ -78,6 +79,37 @@ namespace VizeWeb.Controllers
         {
             var model = new DatabaseContext().GetAllAnnouncement();
             return View("Duyurular", model);
+        }
+
+        public IActionResult UyeRemove(int ID)
+        {
+            Uye uye=databaseContext.Uyeler.FirstOrDefault(x=>x.UyeOkulNo==ID);
+            if (uye != null) { 
+                databaseContext.Uyeler.Remove(uye);
+                databaseContext.SaveChanges();
+            }
+            return View("Index");
+        }
+
+        public IActionResult TakimRemove(int ID)
+        {
+            Takim takim = databaseContext.Takimlar.FirstOrDefault(x => x.TakimdId == ID);
+            if (takim != null)
+            {
+                databaseContext.Takimlar.Remove(takim);
+                databaseContext.SaveChanges();
+            }
+            return View("Index");
+        }
+        public IActionResult BasvuruRemove(int ID)
+        {
+            Basvuru basvuru = databaseContext.Basvurular.FirstOrDefault(x => x.YarismaID == ID);
+            if (basvuru != null)
+            {
+                databaseContext.Basvurular.Remove(basvuru);
+                databaseContext.SaveChanges();
+            }
+            return View("Index");
         }
     }
 }

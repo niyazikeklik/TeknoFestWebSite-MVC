@@ -15,7 +15,7 @@ namespace VizeWeb.business
         }
         public static List<Takim> AllTeamWithMembers(this DatabaseContext databaseContext)
         {
-            return databaseContext.Takimlar.Where(x => true).Include(x => x.TakimUyeleri).ToList();
+            return databaseContext.Takimlar.Include(x => x.TakimUyeleri).ToList();
         }
         public static List<Takim> GetAllTeam(this DatabaseContext databaseContext)
         {

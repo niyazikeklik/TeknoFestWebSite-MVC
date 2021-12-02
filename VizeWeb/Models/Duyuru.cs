@@ -5,7 +5,7 @@ namespace VizeWeb.Models
 {
     public class Duyuru
     {
-        [Key]//primier key
+        [Key]
         public int DuyuruID { get; set; }
         public string DuyuruBaslik { get; set; }
         public string DuyuruAciklama { get; set; }
