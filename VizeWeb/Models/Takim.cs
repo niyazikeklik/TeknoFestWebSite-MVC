@@ -11,7 +11,7 @@ namespace VizeWeb.Models
         public int TakimdId { get; set; }
         public string Name { get; set; }
         public int TakimUyeSayisi { get; set; }
-        public ICollection<Uye> TakimUyeleri { get; set; }
-        public ICollection<Basvuru> Yarismalar  { get; set; }
+        public ICollection<Uye> TakimUyeleri { get; set; }// bir takımın birden cok üyesi olabilir ilişkisel tablo üyeleyle takımlar arasında bire çok ilişki.
+        public ICollection<Basvuru> Yarismalar  { get; set; } //aynı şey geçerli.
     }
 }

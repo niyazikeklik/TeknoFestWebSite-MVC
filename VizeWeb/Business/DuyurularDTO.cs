@@ -17,7 +17,7 @@ namespace VizeWeb.business
         {
             return databaseContext.Duyurular.ToList();
         }
-        public static List<Duyuru> LastFiveAnnouncements(this DatabaseContext databaseContext)
+        public static List<Duyuru> FiveAnnouncements(this DatabaseContext databaseContext)
         {
             return databaseContext.Duyurular.OrderByDescending(x => x.DuyuruTarihi).Take(5).ToList();
         }

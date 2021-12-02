@@ -13,7 +13,7 @@ namespace VizeWeb.Models
     public  class DBSettings
     {
         public string SQLServer { get; set; }
-
+        //json tipinden cekilen dataları sqlserverın içine atıyoruz.
         public DBSettings Get()
         {
             IConfiguration configuration = new ConfigurationBuilder()

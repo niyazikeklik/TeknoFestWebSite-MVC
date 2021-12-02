@@ -18,18 +18,12 @@ namespace VizeWeb.DatabaseContext2
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(connectionString); // veritabanının yolunu belirliyoruz.
         }
-        public DbSet<Uye> Uyeler { get; set; }
+        public DbSet<Uye> Uyeler { get; set; } //tabloyu simgeliyor.
         public DbSet<Takim> Takimlar { get; set; }
         public DbSet<Duyuru> Duyurular { get; set; }
         public DbSet<Basvuru> Basvurular { get; set; }
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        }
-
-        internal Takim First(object p) => throw new NotImplementedException();
     }
 
 }
