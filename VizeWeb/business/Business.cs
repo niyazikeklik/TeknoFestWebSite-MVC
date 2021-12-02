@@ -16,7 +16,6 @@ namespace VizeWeb.business
 
     public static class Business
     {
- 
         public static Tuple<List<string>, List<List<string>>> TableUyeModelCreate(List<Uye> uyeler)
         {
             var x = typeof(Uye).GetProperties().ToList();
@@ -41,16 +40,16 @@ namespace VizeWeb.business
             var model = new Tuple<List<string>, List<List<string>>>(Sutunlar, Satirlar);
             return model;
         }
-        public static Tuple<List<string>, List<List<string>>> TableTakimModelCreate()
+        public static Tuple<List<string>, List<List<string>>> TableTakimModelCreate(List<Takim> takimlar)
         {
             var x = typeof(Takim).GetProperties().ToList();
             var y = x.Select(x => x.Name);
             List<string> Sutunlar = new List<string>(y);
             List<List<string>> Satirlar = new();
-            foreach (var item in TakimDTO.AllTeamWithMembers(new DatabaseContext()))
+            foreach (var item in takimlar)
             {
                 string takimUyeleriHTML = "";
-                foreach (var itemUye in item.TakimUyeleri)
+                foreach (var itemUye in item?.TakimUyeleri)
                 {
                     takimUyeleriHTML += itemUye.UyeAdi + " - " + itemUye.UyeAlan + " | ";
                 }
