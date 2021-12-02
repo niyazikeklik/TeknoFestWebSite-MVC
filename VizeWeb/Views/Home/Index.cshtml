@@ -90,7 +90,7 @@
                                 </div>
                             </div>
                         </div>
-                        @foreach (var item in new DatabaseContext().LastFiveAnnouncements())
+                        @foreach (var item in new DatabaseContext().FiveAnnouncements())
                         {
                             @Html.Partial("PartialView\\Duyuru", item)
                         }
