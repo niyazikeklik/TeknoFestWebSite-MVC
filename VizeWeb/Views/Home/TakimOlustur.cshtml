@@ -11,7 +11,6 @@
 </div>
 <div style="margin-right:100px;">
     <div style="margin-left: 100px;">
-        <form class="g-3 needs-validation">
             <div class="row">
                 <div class="col">
 
@@ -40,7 +39,6 @@
             <td>
                 <input style="margin-top: 50px;" id="takimolusturbtn" type="submit" name="buton" onclick="CreateTakim()" value="Takım Oluştur" class="btn btn-info mx-auto col">
             </td>
-        </form>
 
     </div>
 </div>
@@ -50,7 +48,6 @@
     function CreateTakim(){
             var obj = new Object();
             obj.Name = $("#TakimName").val();
-            obj.TakimUyeSayisi = $("#takimUyeSayisi").val();
             obj.TakimUyeleri =  [
                 $("#uye_0").val(),
                 $("#uye_1").val(),
@@ -64,7 +61,7 @@
             data: { Model: JSON.stringify(obj)},
             dataType: "text",
             success: function (msg) {
-                if (msgShow) alert("Başarıyla kaydedildi: " + msg)
+                alert("Başarıyla kaydedildi: " + msg)
             }
         });
     }

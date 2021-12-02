@@ -93,9 +93,15 @@ namespace VizeWeb.Controllers
 
         public IActionResult TakimRemove(int ID)
         {
-            Takim takim = databaseContext.Takimlar.FirstOrDefault(x => x.TakimdId == ID);
+            Takim takim = databaseContext.Takimlar.Include(x=> x.TakimUyeleri).FirstOrDefault(x => x.TakimdId == ID);
             if (takim != null)
             {
+                foreach (var item in takim.TakimUyeleri)
+                {
+                   var x =  databaseContext.Uyeler.First(y => y.UyeOkulNo == item.UyeOkulNo);
+                   x.UyeTakim = null;
+                }
+                databaseContext.SaveChanges();
                 databaseContext.Takimlar.Remove(takim);
                 databaseContext.SaveChanges();
             }
