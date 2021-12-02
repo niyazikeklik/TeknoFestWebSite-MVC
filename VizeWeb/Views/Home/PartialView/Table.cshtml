@@ -3,7 +3,18 @@
 *@
 @model Tuple<List<string>, List<List<string>>>
 @{
+
+
     List<string> Columns = Model.Item1;
+
+    string silAction = "";
+    if (Columns[0].Equals("UyeOkulNo"))
+        silAction = "UyeRemove";
+    else if (Columns[0].Equals("TakimdId"))
+        silAction = "TakimRemove";
+    else if (Columns[0].Equals("YarismaID"))
+        silAction = "BasvuruRemove";
+
     List<List<string>> Satir = Model.Item2;
 }
 <table class="table table-striped table-hover">
@@ -18,13 +29,15 @@
     <tbody>
         @foreach (var item in Satir)
         {
+            <form asp-controller="Home" asp-action=@silAction>
             <tr>
-                @for (var i = 0; i < @item.Count(); i++)
-                {
+                    @for (var i = 0; i < @item.Count(); i++)
+                    {
                     <td>@item[i]</td>
-                }
-                <td><button class ="button btn-danger" tablo="Uyeler" value="">Sil</button></td>
+                    }
+                <td>><button class="button btn-danger" name="ID" value="@item[0]">Sil</button></td>
             </tr>
+            </form>
         }
     </tbody>
 </table>
